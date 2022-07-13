@@ -2,6 +2,7 @@ const profesores = ['Maria', 'Raul', 'Alejandro', 'Sofia'];
 const notas = [];
 const usuario = prompt("Bienvenido! Diganos su nombre.");
 let suma = 0;
+let promedio = 0;
 
 function comprobarAcceso(nombre){
 
@@ -16,18 +17,18 @@ function comprobarAcceso(nombre){
 
 comprobarAcceso(usuario);
 
-function pedirNotas(){
-    
-    const cantidadNotas = prompt("Indique la cantidad de Notas.");
+const cantidadNotas = prompt("Indique la cantidad de Notas.");
+
+function pedirNotas(cantidad){
 
     do{
         let ingreso = prompt("Ingrese sus notas: ");
         notas.push(ingreso.toUpperCase());
-    }while(notas.length != cantidadNotas);
+    }while(notas.length != cantidad);
 
 }
 
-pedirNotas();
+pedirNotas(cantidadNotas);
 
 function sacarPromedio(){
     
@@ -37,8 +38,10 @@ function sacarPromedio(){
         
     }
 
+    promedio = suma / parseInt(cantidadNotas);
+
 }
 
 sacarPromedio();
 
-alert(suma);
+alert("El promedio de notas es: " + promedio);
