@@ -7,9 +7,9 @@ let promedio = 0;
 function comprobarAcceso(nombre){
 
     if(profesores.includes(nombre) == true){
-        alert('Bienvenido Profesor.')
+        alert('Bienvenido Profesor.');
     }else{
-        alert("Denegado, usted no es profesor.")
+        alert("Denegado, usted no es profesor.");
         window.location.reload();
     }
 
