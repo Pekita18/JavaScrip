@@ -9,7 +9,7 @@ function enseñarBot(){
     bot: prompt("Ingrese la respuesta del Bot.")});
 }
 
-/*======== FUNCION HABLAR BOT ==========*/
+/*======== FUNCION HABLAR BOT =========*/
 
 function hablarBot(){
     const primerMensaje = prompt("Escribele a Cova.");
