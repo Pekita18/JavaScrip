@@ -1,34 +1,36 @@
 /*======= ARRAY BASE DE DATOS BOT =========*/
 
-const dialogoBots = [{user: "Hola", bot: "Hola soy Cova"}, {user: "Como te llamas", bot: "Mi nombre es Cova"},{user: "Chau", bot: "Hasta luego amigo."}];
+const dialogoBots = [{user: "Hola", bot: "Hola :)"}, {user: "Como te llamas", bot: "Mi nombre es Cova"},{user: "Chau", bot: "Hasta luego amigo."}, {user: "hola putoo" , bot:"putoo"}];
 
 /*======= FUNCION ENSEÑAR BOT =========*/
 
 function enseñarBot(){
-    let user = dialogoBots.push({user: prompt("Ingrese su texto") , 
-    bot: prompt("Ingrese la respuesta del Bot.")});
+    let p = document.getElementById("bot");
+    p.innerHTML = "<h3>Escribre la pregunta que quieres que aprenda el bot</h3>"
+    let user = dialogoBots.push({user: document.getElementById("usuario").value});
+    p.innerHTML = "<h3>Escribe lo que quieras que responda el Bot</h3>";
+    let bot = dialogoBots.push({bot: document.getElementById("usuario").value});
 }
 
 /*======== FUNCION HABLAR BOT =========*/
 
 function hablarBot(){
-    const primerMensaje = prompt("Escribele a Cova.");
+    const primerMensaje = document.getElementById("usuario").value;
 
     const respuestaBot = dialogoBots.find(dialogoBot => dialogoBot.user === primerMensaje);
 
     if(typeof respuestaBot === 'undefined'){
-        alert("No tengo respuesta para este mensaje. Enseñame!");
+        let p = document.getElementById("bot");
+        p.innerHTML = "<h3>No tengo respuesta para esto, enseñame!</h3>";
         enseñarBot();
     }else{
-        alert(respuestaBot.bot);
+        let p = document.getElementById("bot");
+        p.innerHTML = `<h3> ${respuestaBot.bot} </h3>`;
     }
 }
 
 /*======= CONTADOR DE CHATS ==========*/
 
-for(let i = 0; i <= 11; i++){
+for(let i = 0; i <=20; i++){
     hablarBot();
 }
-
-alert("Te quedaste sin burbujas, vuelve mañana y sigue hablando con Cova!")
-
