@@ -1,34 +1,42 @@
 /*======= ARRAY BASE DE DATOS BOT =========*/
 
-const dialogoBots = [{user: "Hola", bot: "Hola soy Cova"}, {user: "Como te llamas", bot: "Mi nombre es Cova"},{user: "Chau", bot: "Hasta luego amigo."}];
+const dialogoBots = [{user: "Hola", bot: "Hola soy Cova"}, {user: "Como te llamas", bot: "Mi nombre es Cova"},{user: "Chau", bot: "Hasta luego amigo."}, {user: "abriendote", bot:"es la unica forma de conocerte.(3:05)"}];
 
-/*======= FUNCION ENSEÑAR BOT =========*/
+/*======= ANULAR ENVIAR INPUT ========*/
 
-function enseñarBot(){
-    let user = dialogoBots.push({user: prompt("Ingrese su texto") , 
-    bot: prompt("Ingrese la respuesta del Bot.")});
-}
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {
+      if(e.keyCode == 13) {
+        e.preventDefault();
+      }
+    }))
+});
 
-/*======== FUNCION HABLAR BOT =========*/
+/*======= HABLAR CON BOT ========*/
 
-function hablarBot(){
-    const primerMensaje = prompt("Escribele a Cova.");
+let p = document.getElementById("bot");
 
-    const respuestaBot = dialogoBots.find(dialogoBot => dialogoBot.user === primerMensaje);
+let hablarBot = document.getElementById("btn");
+hablarBot.innerHTML = "Enviar";
 
-    if(typeof respuestaBot === 'undefined'){
-        alert("No tengo respuesta para este mensaje. Enseñame!");
-        enseñarBot();
-    }else{
-        alert(respuestaBot.bot);
+hablarBot.onclick = () => {
+
+    chatUser = document.getElementById("hablar").value;
+
+    const enseñarBot = () => {
+        p.innerHTML = "Ya lo aprendi, pruebalo!";
+        document.getElementById("hablar").value = "";
+        dialogoBots.push({user: chatUser, bot: prompt("Ingrese la respuesta del Bot.")});
     }
-}
 
-/*======= CONTADOR DE CHATS ==========*/
+    const hablarBot = () => {
 
-for(let i = 0; i <= 11; i++){
+        if(comprobacion = dialogoBots.find((el) => el.user == chatUser)){
+            p.innerHTML = comprobacion.bot;
+        }else{
+            enseñarBot();
+        }
+    }
+
     hablarBot();
 }
-
-alert("Te quedaste sin burbujas, vuelve mañana y sigue hablando con Cova!")
-

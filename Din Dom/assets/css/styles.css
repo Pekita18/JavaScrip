@@ -525,6 +525,13 @@ button{
 }
 
 /*=============== NEW ARRIVALS ===============*/
+
+.enseñar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .new__container{
   padding-top: 1rem;
 }
