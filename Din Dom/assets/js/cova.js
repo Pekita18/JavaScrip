@@ -12,6 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }))
 });
 
+/*======= ACTUALIZAR ARRAY ======*/
+
+const subirArray = () => {
+    let objArr = {};
+
+    for ( let i = 0; i < localStorage.length; i++) { 
+        objArr = localStorage.getItem(localStorage.key(i)); 
+        let subirArr = JSON.parse(objArr);
+        dialogoBots.push(subirArr);
+    } 
+}
+
+subirArray();
+
+
 /*======= HABLAR CON BOT ========*/
 
 let p = document.getElementById("bot");
@@ -23,18 +38,12 @@ hablarBot.onclick = () => {
 
     chatUser = document.getElementById("hablar").value;
 
-    const enseñarBot = () => {
-        p.innerHTML = "Ya lo aprendi, pruebalo!";
-        document.getElementById("hablar").value = "";
-        dialogoBots.push({user: chatUser, bot: prompt("Ingrese la respuesta del Bot.")});
-    }
-
     const hablarBot = () => {
 
         if(comprobacion = dialogoBots.find((el) => el.user == chatUser)){
             p.innerHTML = comprobacion.bot;
         }else{
-            enseñarBot();
+            p.innerHTML = `No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.`;
         }
     }
 
