@@ -6,9 +6,8 @@ const dialogoBots = [{user: "Hola", bot: "Hola soy Cova"}, {user: "Como te llama
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {
-      if(e.keyCode == 13) {
-        e.preventDefault();
-      }
+        /*== AND ==*/
+        e.keyCode == 13 && e.preventDefault();
     }))
 });
 
@@ -26,26 +25,25 @@ const subirArray = () => {
 
 subirArray();
 
+/*======= FUNCION HABLAR BOT =======*/
 
-/*======= HABLAR CON BOT ========*/
+const hablarBot = () => {
 
-let p = document.getElementById("bot");
+    /*== Variables ==*/
+    let chatUser = document.getElementById("hablar").value;
+    let p = document.getElementById("bot");
+    let comprobacion = dialogoBots.find((el) => el.user == chatUser);
+    const noRes = p.innerHTML = `No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.`
 
-let hablarBot = document.getElementById("btn");
-hablarBot.innerHTML = "Enviar";
+    /*== OR ==*/
+    p.innerHTML = comprobacion.bot || noRes;
 
-hablarBot.onclick = () => {
+}
 
-    chatUser = document.getElementById("hablar").value;
+/*======= BOTON BOT ========*/
 
-    const hablarBot = () => {
+let botonBot = document.getElementById("btn");
 
-        if(comprobacion = dialogoBots.find((el) => el.user == chatUser)){
-            p.innerHTML = comprobacion.bot;
-        }else{
-            p.innerHTML = `No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.`;
-        }
-    }
-
+botonBot.onclick = () => {
     hablarBot();
 }
