@@ -78,6 +78,16 @@
 }
 
 /*=============== BASE ===============*/
+
+#voz{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  margin-top: 40px;
+  margin-left: 190px;
+}
+
 *{
   box-sizing: border-box;
   padding: 0;

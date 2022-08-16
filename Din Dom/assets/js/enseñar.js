@@ -1,10 +1,16 @@
+/*======= FUNCION MAYUSCULA PRIMERA LETRA ========*/
+
+const mayuscula = (palabra) => {
+    return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+}
+
 /*======= FUNCION SUBIR LOCAL ========*/
 
 const subirLocal = () => {
     /*== Variables ==*/
     chatUser = document.getElementById("hablar").value;
     chatBot = document.getElementById("enseñar").value;
-    const objLocal = {user: chatUser, bot: chatBot};
+    const objLocal = {user: mayuscula(chatUser), bot: chatBot};
     const subirLocal = JSON.stringify(objLocal);
 
     /*== Storage Local==*/
