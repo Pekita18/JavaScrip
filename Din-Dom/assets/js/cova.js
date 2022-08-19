@@ -90,9 +90,9 @@ const hablarBot = () => {
     /*== Variables ==*/
     let chatUser = document.getElementById("hablar").value;
     let comprobacion = dialogoBots.find((el) => el.user == mayuscula(chatUser));
-    const noRes = p.innerHTML = `No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.`
+    const noRes = p.innerHTML = `No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.`;
 
-    lucia(chatUser);
+    tipo_pokemon(chatUser);
 
     /*== OR ==*/
     p.innerHTML = comprobacion.bot || noRes;
@@ -107,12 +107,14 @@ botonBot.onclick = () => {
     hablarBot();
 }
 
-const lucia = (tipo) => {
+const tipo_pokemon = (tipo) => {
     let bd_type = `https://pokeapi.co/api/v2/type/${tipo}`;
     fetch(bd_type)
     .then(resp => resp.json())
     .then(data => {
-        let aleatorio = Math.round(Math.random() * (data.pokemon.length - 1) + 1);
-        console.log(data.pokemona[aleatorio]);
+        let aleatorio = Math.floor(Math.random() * (data.pokemon.length));
+        pokemon = data.pokemon[aleatorio].pokemon.name;
+        tipo_pok = data.name;
+        p.innerHTML = `${pokemon} es un pokemon de tipo ${tipo_pok}`
     })
 }
