@@ -79,6 +79,15 @@
 
 /*=============== BASE ===============*/
 
+.pokemons{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pokemons li{
+  margin-right: 10px;
+}
+
 #voz{
   display: flex;
   align-items: center;
