@@ -1,17 +1,12 @@
+/*======= DECLARAMOS ARTUOM ========*/
+
 const artyom = new Artyom();
 
 /*======= ARRAY BASE DE DATOS BOT =========*/
 
 const dialogoBots = [{user: "Hola", bot: "Hola soy Cova"}, {user: "Cómo te llamas", bot: "Mi nombre es Cova"},{user: "Chau", bot: "Hasta luego amigo."}, {user: "Abriendote", bot:"es la unica forma de conocerte.(3:05)"}];
 
-/*======= ANULAR ENVIAR INPUT ========*/
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {
-        /*== AND ==*/
-        e.keyCode == 13 && e.preventDefault();
-    }))
-});
+const pokemons = [{tipo: "normal"}, {tipo: "fighting"}, {tipo: "flying"}, {tipo: "poison"}, {tipo: "ground"}, {tipo: "rock"}, {tipo: "bug"}, {tipo: "ghost"}, {tipo: "steel"}, {tipo: "fire"}, {tipo: "water"}, {tipo: "grass"}, {tipo: "electric"}, {tipo: "psychic"}, {tipo: "ice"}, {tipo: "dragon"}, {tipo: "dark"}, {tipo: "fairy"}, ]
 
 /*======= ACTUALIZAR ARRAY ======*/
 
@@ -27,19 +22,68 @@ const subirArray = () => {
 
 subirArray();
 
-/*======= VARIABLE PARRAFO =========*/
+/*====== API POKEMON =======*/
 
-let p = document.getElementById("bot");
+const tipo_pokemon = (tipo) => {
+    let bd_type = `https://pokeapi.co/api/v2/type/${tipo}`;
+    fetch(bd_type)
+    .then(resp => resp.json())
+    .then(data => {
+        let aleatorio = Math.floor(Math.random() * (data.pokemon.length));
+        pokemon = data.pokemon[aleatorio].pokemon.name;
+        tipo_pok = data.name;
+        coin.insertAdjacentHTML('beforeend', `<p id="bot">${pokemon} es un pokemon de tipo ${tipo_pok}</p>`);
+    })
+}
 
-/*======= FUNCION MAYUSCULA PRIMERA LETRA ========*/
+/*======= VARIABLES GLOBALES =========*/
+
+let chat= document.getElementById("hablar");
+let coin = document.getElementById("chat");
+let botonBot = document.getElementById("btn");
+let voz = document.getElementById("voz");
+let ul = document.getElementById("pokemons");
+
+/*======= FUNCIONES Y EVENTOS GLOBALES ========*/
 
 const mayuscula = (palabra) => {
     return palabra.charAt(0).toUpperCase() + palabra.slice(1);
 }
 
-/*======= INICIAR ARTYOM =======*/
+function quitarAcentos(cadena){
+	const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
+	return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
+}
 
-let voz = document.getElementById("voz");
+chat.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      botonBot.onclick();
+    }
+});
+
+const scroll = (id) => {
+    const element = document.getElementById(id);
+    element.scrollTop = element.scrollHeight;
+}
+
+const noRes = () => {
+    coin.insertAdjacentHTML('beforeend', `<p id="bot">No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.</p>`);
+}
+
+const siRes = () => {
+    coin.insertAdjacentHTML('beforeend', `<p id="bot">${comprobacion.bot}</p>`);
+}
+
+/*======= IMPRIMIR POKEMONS ==========*/
+
+const printPoke = pokemons.map((poke) => {
+    return `<li> ${poke.tipo} </li>`
+}).flat().join('');
+
+ul.innerHTML = printPoke;
+
+/*======= INICIAR ARTYOM =======*/
 
 voz.onclick = () => {
     artyom.initialize({
@@ -69,17 +113,19 @@ artyom.addCommands([
 
 artyom.redirectRecognizedTextOutput(function(recognized,isFinal){
     if(isFinal){
-        let ingresado = recognized;
+        let ingresado = quitarAcentos(recognized);
+        coin.insertAdjacentHTML('beforeend', `<p id="user">${ingresado}</p>`);
         let reconoce = dialogoBots.find((el) => el.user == mayuscula(ingresado));
         if(reconoce){
             artyom.say(reconoce.bot);
-            p.innerHTML = "";
+            coin.insertAdjacentHTML('beforeend', `<p id="bot">${reconoce.bot}</p>`);
             artyom.fatality();
         }else{
             artyom.say("No tengo respuesta para esto, enseñame por favor.")
-            p.innerHTML = `No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.`
+            noRes();
             artyom.fatality();
         }
+        scroll("chat");
     }
 });
 
@@ -88,33 +134,34 @@ artyom.redirectRecognizedTextOutput(function(recognized,isFinal){
 const hablarBot = () => {
 
     /*== Variables ==*/
-    let chatUser = document.getElementById("hablar").value;
+    let chatUser = chat.value;
+    coin.insertAdjacentHTML('beforeend', `<p id="user">${chatUser}</p>`);
     let comprobacion = dialogoBots.find((el) => el.user == mayuscula(chatUser));
-    const noRes = p.innerHTML = `No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.`;
+    let comprobacionPoke = pokemons.find((el) => el.tipo == chatUser    );  
 
     tipo_pokemon(chatUser);
 
-    /*== OR ==*/
-    p.innerHTML = comprobacion.bot || noRes;
+    if(comprobacion == undefined && comprobacionPoke == undefined){
+        scroll("chat");
+        setTimeout(function(){
+            noRes();
+        }, 500);
+    }else{
+        setTimeout(function(){
+            siRes();
+        }, 500);
+    }
+    
+    setTimeout(function(){
+        scroll("chat");
+    }, 500);  
+    
+    chat.value = "";
 
 }
 
 /*======= BOTON BOT ========*/
 
-let botonBot = document.getElementById("btn");
-
 botonBot.onclick = () => {
     hablarBot();
-}
-
-const tipo_pokemon = (tipo) => {
-    let bd_type = `https://pokeapi.co/api/v2/type/${tipo}`;
-    fetch(bd_type)
-    .then(resp => resp.json())
-    .then(data => {
-        let aleatorio = Math.floor(Math.random() * (data.pokemon.length));
-        pokemon = data.pokemon[aleatorio].pokemon.name;
-        tipo_pok = data.name;
-        p.innerHTML = `${pokemon} es un pokemon de tipo ${tipo_pok}`
-    })
 }

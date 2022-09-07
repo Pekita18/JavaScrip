@@ -1049,3 +1049,39 @@ button{
   50%  { transform: translate(0, 15px); }
   100%   { transform: translate(0, -0px); }   
 }
+
+
+#entrada{
+  margin-top: -130px;
+}
+
+#chat{
+  height: 300px;
+	width: 480px;
+  overflow-y: scroll;
+  margin-top: -40px;
+  scroll-behavior: auto;
+  background: var(--body-color);
+}
+
+#bot{
+  text-align: start;
+  margin: 010px 15px;
+}
+
+#user{
+  text-align: end;
+  width: 400px;
+  padding: 20px 0px;
+  margin: 10px 30px;
+}
+
+#chat-container{
+  margin-top: -479px;
+}
+
+#pokegod{
+  width: 731px;
+  margin-left: 949px;
+  margin-top: 95px;
+}

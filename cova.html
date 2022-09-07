@@ -64,15 +64,35 @@
 
         <main class="main">
 
+            <main class="main">
+            
+                <section class="section newsletter">
+    
+                    <div class="newsletter__container container" id="pokegod">
+    
+                        <h2 style="margin-bottom: 20px;" >¡Ahora Cova es experto en Pokemons!</h2>
+                        <span style="margin-bottom: 20px;">Escrible a cova alguno de estos tipos de pokemon y el te dira uno de ese tipo!!</span>
+                        <ul class="pokemons" id="pokemons">
+                        </ul>
+    
+                    </div>
+                
+                </section>    
+    
+            </main>
+
             <!--=========== CHAT ============-->
 
-            <section class="section newsletter">
+            <section class="section newsletter" id="chat-container">
+                <h2 class="section__title">CHAT COVA</h2>
+                <div class="container" id="chat"></div>
+            </section>
+
+            <section class="section newsletter" id="entrada">
                 <div class="newsletter__container container">
-                    <h2 class="section__title">CHAT COVA</h2>
-                    <p class="newsletter__description" id="bot"></p>
 
                     <form action="" class="newsletter__form">
-                        <input type="text" placeholder="Escrivele a Cova" class="newsletter__input" id="hablar">
+                        <input type="text" autocomplete="off" placeholder="Escrivele a Cova" class="newsletter__input" id="hablar">
                         <button class="button" type="button" id="btn">Enviar</button>
                     </form>
                     
@@ -82,57 +102,6 @@
 
         </main>
 
-        <main class="main">
-            
-            <section class="section newsletter">
-
-                <div class="newsletter__container container">
-
-                    <h2 style="margin-bottom: 20px;" >¡Ahora Cova es experto en Pokemons!</h2>
-                    <span style="margin-bottom: 20px;">Escrible a cova alguno de estos tipos de pokemon y el te dira uno de ese tipo!!</span>
-                    <ul class="pokemons">
-                        <li>normal</li>
-                        <li>-</li>
-                        <li>fighting</li>
-                        <li>-</li>
-                        <li>flying</li>
-                        <li>-</li>
-                        <li>poison</li>
-                        <li>-</li>
-                        <li>ground</li>
-                        <li>-</li>
-                        <li>rock</li>
-                        <li>-</li>
-                        <li>bug</li>
-                        <li>-</li>
-                        <li>ghost</li>
-                        <li>-</li>
-                        <li>steel</li>
-                        <li>-</li>
-                        <li>fire</li>
-                        <li>-</li>
-                        <li>water</li>
-                        <li>-</li>
-                        <li>grass</li>
-                        <li>-</li>
-                        <li>electric</li>
-                        <li>-</li>
-                        <li>psychic</li>
-                        <li>-</li>
-                        <li>ice</li>
-                        <li>-</li>
-                        <li>dragon</li>
-                        <li>-</li>
-                        <li>dark</li>
-                        <li>-</li>
-                        <li>fairy</li>
-                    </ul>
-
-                </div>
-            
-            </section>    
-
-        </main>
         <!--==================== FOOTER ====================-->
 
             <footer class="footer section">
@@ -215,12 +184,10 @@
             <a href="#" class="scrollup" id="scroll-up">
                 <i class='bx bx-up-arrow-alt scrollup__icon'></i>
             </a>
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+            
             <script src="./assets/js/artyom.js"></script>
             <script src="./assets/js/artyom.window.js"></script>
             <script src="./assets/js/artyom.window.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="./assets/js/cova.js"></script>
         
     </body>
