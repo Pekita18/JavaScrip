@@ -71,10 +71,6 @@ const noRes = () => {
     coin.insertAdjacentHTML('beforeend', `<p id="bot">No tengo respuesta! Toca el boton <a href="./enseñar.html"> Enseñar </a>.</p>`);
 }
 
-const siRes = () => {
-    coin.insertAdjacentHTML('beforeend', `<p id="bot">${comprobacion.bot}</p>`);
-}
-
 /*======= IMPRIMIR POKEMONS ==========*/
 
 const printPoke = pokemons.map((poke) => {
@@ -148,7 +144,7 @@ const hablarBot = () => {
         }, 500);
     }else{
         setTimeout(function(){
-            siRes();
+            coin.insertAdjacentHTML('beforeend', `<p id="bot">${comprobacion.bot}</p>`);
         }, 500);
     }
     
